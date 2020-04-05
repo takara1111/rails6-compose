@@ -79,7 +79,7 @@ test:
 # You can use this database configuration with:
 #
 #   production:
-#     url: <%= ENV['DATABASE_URL'] %>
+#     url: <%= ENV['DA TABASE_URL'] %>
 #
 production:
   <<: *default
