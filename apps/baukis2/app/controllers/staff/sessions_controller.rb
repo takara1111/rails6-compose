@@ -1,4 +1,5 @@
 class Staff::SessionsController < Staff::Base
+
   def new
     if current_staff_member
       redirect_to :staff_root
@@ -19,5 +20,10 @@ class Staff::SessionsController < Staff::Base
     else
       render action: "new"
     end
+  end
+
+  def destroy
+    session.delete(:staff_member_id)
+    redirect_to :staff_root
   end
 end
