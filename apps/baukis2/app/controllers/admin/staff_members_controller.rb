@@ -38,6 +38,7 @@ class Admin::StaffMembersController < Admin::Base
   end
 
   private def staff_member_params
+  binding.pry
     params.require(:staff_member).permit(
       :email, :password, :family_name, :given_name,
       :family_name_kana, :given_name_kana,
