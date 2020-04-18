@@ -33,7 +33,7 @@ class Admin::StaffMembersController < Admin::Base
       flash.notice = "職員アカウントを更新しました。"
       redirect_to :admin_staff_members
     else
-      render acrion: "edit"
+      render action: "edit"
     end
   end
 
