@@ -1,6 +1,10 @@
 require "rails_helper"
 
 describe "職員による自分のアカウントの管理" do
+  include_examples "a protected singular staff controller", "staff/accounts"
+end
+
+describe "職員による自分のアカウントの管理" do
   before do 
     post staff_session_url,
       params: {
