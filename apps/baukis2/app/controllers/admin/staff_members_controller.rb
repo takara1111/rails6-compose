@@ -29,7 +29,6 @@ class Admin::StaffMembersController < Admin::Base
 
   def update
     @staff_member = StaffMember.find(params[:id])
-    binding.pry
     @staff_member.assign_attributes(staff_member_params)
     if @staff_member.save
       flash.notice = "職員アカウントを更新しました。"
