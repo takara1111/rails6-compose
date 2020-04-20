@@ -34,7 +34,6 @@ describe "職員による自分のアカウントの管理" do
       get staff_account_url
       expect(response).to redirect_to(staff_login_url)
     end
-    
   end
   
   describe "更新" do
