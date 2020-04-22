@@ -2,10 +2,11 @@ class Admin::StaffEventsController < Admin::Base
   def index
     if params[:staff_member_id]
       @staff_member = StaffMember.find(params[:staff_member_id])
-      @events = @staff_member.events.order(occurred_at: :desc)
+      @events = @staff_member
     else
-      @events = StaffEvent.order(occurred_at: :desc)
+      @events = StaffEvent
     end
+    @events = @events.order(occrrd_at: :desc)
     @events = @events.include(:member)
     @events = @events.page(params[:page])
   end
