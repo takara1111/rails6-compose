@@ -8,17 +8,17 @@ class StaffMember < ApplicationRecord
     self.family_name = normalize_as_name(family_name)
     self.given_name = normalize_as_name(given_name)
     self.family_name_kana = normalize_as_furigana(family_name_kana)
-    self.family_name_kana = normalize_as_furigana(family_name_kana)
+    self.given_name_kana = normalize_as_furigana(given_name_kana)
   end
 
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/
 
-  validates :email. presence: true, "valid_email_2/email": true,
+  validates :email, presence: true, "valid_email_2/email": true,
     uniqueness: { case_sensitive: false }
   validates :family_name, :given_name, presence: true
   validates :family_name_kana, :given_name_kana, presence: true,
     format: { with: KATAKANA_REGEXP, allow_blank: true }
-  validates :start_date, presence: true, data: {
+  validates :start_date, presence: true, date: {
     after_or_equal_to: Date.new(2000, 1, 1),
     before: -> (obj) { 1.year.from_now.to_date },
     allow_blank: true
@@ -38,7 +38,7 @@ class StaffMember < ApplicationRecord
   end
 
   def active?
-    !suspended? && start_date <= Date.today &&
+    !suspended && start_date <= Date.today &&
       (end_date.nil? || end_date > Date.today)
   end
 end
